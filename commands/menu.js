@@ -4,7 +4,22 @@ const os = require('os')
 const config = require('../config')
 const fn = require('../functions')
 const { menuText, getTheme } = require('../style')
-
+const categoryEmojis = {
+  general: '✨',
+  owner: '👑',
+  group: '👥',
+  download: '📥',
+  convert: '🔄',
+  media: '🎬',
+  tools: '🛠️',
+  fun: '😂',
+  'global economy': '🌍',
+  'local economy': '💰',
+  ai: '🤖',
+  developer: '👨‍💻',
+  search: '🔍',
+  info: 'ℹ️'
+}
 function groupByCategory(commands) {
   const groups = {}
   for (const cmd of commands) {
@@ -56,10 +71,24 @@ module.exports = {
     }
 
     // .menu : just the section names, so the list isn't a long scroll
-    const theme = getTheme()
-    const lines = [theme.top(String(config.botName || 'GIDEON').toUpperCase()), ...stats, '']
-    for (const cat of cats) lines.push(theme.heading(`${titleCase(cat)} (${grouped[cat].length})`))
-    lines.push('', `Type ${prefix}menu <section> to see its commands.`, `Example: ${prefix}menu ${cats.find((c) => c === 'local economy') || cats[0]}`, theme.bottom)
+   const lines = [`╭─「 🌸 ${String(config.botName || 'SITHUWA').toUpperCase()} MD 🎀 」─`]
+lines.push(`│ 👑 Owner : ${config.ownerName}`)
+lines.push(`│ ⚡ Prefix : ${prefix}`)
+lines.push(`│ 🕒 Uptime : ${fn.runtime(process.uptime())}`)
+lines.push(`│ 💾 RAM : ${fn.formatSize(os.totalmem() - os.freemem())} / ${fn.formatSize(os.totalmem())}`)
+lines.push(`│ 📅 Time : ${fn.clockString()}`)
+lines.push(`╰───────────────`)
+lines.push(``)
+lines.push(`╭─「 📋 MAIN MENU 」─`)
+for (const cat of cats) {
+  let emoji = categoryEmojis[cat.toLowerCase()] || '📌'
+  lines.push(`│ ${emoji} ${titleCase(cat)} (${grouped[cat].length})`)
+}
+lines.push(`╰───────────────`)
+lines.push(``)
+lines.push(`💡 Type ${prefix}menu <section> to see commands`)
+lines.push(`📌 Example: ${prefix}menu fun`)
+lines.push(`⚙️ Type ${prefix}settings for Settings!`) 
     await sock.sendButtons(m.chat, lines.join('\n'), { quoted: m._msg, image: getBotImage(), skipBox: true, mode: 'text' })
   }
 }
