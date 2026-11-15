@@ -45,12 +45,15 @@ module.exports = {
   category: 'general',
   async run(sock, m, { args, prefix, commands }) {
     const grouped = groupByCategory(commands)
-    const stats = [
-      `Owner : ${config.ownerName}`,
-      `Prefix : ${prefix}`,
-      `Uptime : ${fn.runtime(process.uptime())}`,
-      `RAM : ${fn.formatSize(os.totalmem() - os.freemem())} / ${fn.formatSize(os.totalmem())}`,
-      `Time : ${fn.clockString()}`
+  const stats = [
+  '👑 𝐎𝐰𝐧𝐞𝐫 : 𝐃𝐓𝐙 𝐒𝐈𝐓𝐇𝐔𝐖𝐀 ❤️',
+  '⚡ 𝐏𝐫𝐞𝐟𝐢𝐱 : ' + prefix,
+  '⏳ 𝐔𝐩𝐭𝐢𝐦𝐞 : ' + fn.runtime(process.uptime()),
+  '💾 𝐑𝐀𝐌 : ' + fn.formatSize(os.totalmem() - os.freemem()) + ' / ' + fn.formatSize(os.totalmem()),
+  '📅 𝐓𝐢𝐦𝐞 : ' + fn.clockString(),
+  '🤖 𝐕𝐞𝐫𝐬𝐢𝐨𝐧 : 𝐒𝐈𝐓𝐇𝐔𝐖𝐀 𝐕𝟏 🎀',
+  '✨ 𝐌𝐚𝐝𝐞 𝐖𝐢𝐭𝐡 : 💖 𝐁𝐲 𝐃𝐓𝐙 𝐒𝐈𝐓𝐇𝐔𝐖𝐀'
+]
     ]
     const order = ['general', 'owner', 'group', 'download', 'convert', 'media', 'tools', 'fun', 'global economy', 'local economy', 'ai', 'developer', 'search', 'other']
     const cats = [...new Set([...order, ...Object.keys(grouped)])].filter((cat) => grouped[cat]?.length)
