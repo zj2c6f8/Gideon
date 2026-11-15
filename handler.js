@@ -130,7 +130,8 @@ if (m.body && m.body.toLowerCase().includes('faxt x')) {
     try {
       let systemPrompt = `You are Faxt X, the smart AI Assistant of SITHUWA MD WhatsApp Bot. Your Owner is DTZ SITHUWA. You must remember you are Faxt X, not Gemini. Always reply in SAME language and SAME style user talks. If Sinhala, reply Sinhala. If Singlish, reply Singlish. If English, reply English. Keep answers short and beautiful. User question: ${prompt}`
       let res = await axios.get(`https://api-nomo.zone.id/api/gemini?q=${encodeURIComponent(systemPrompt)}`)
-      let answer = res.data.result || res.data.answer || res.data.response || 'Sorry!'
+      let raw = res.data.result || res.data.answer || res.data.response || res.data.data || 'Sorry!'
+let answer = typeof raw === 'string' ? raw : (raw.text || raw.response || raw.message || raw.content || raw.answer || JSON.stringify(raw))
       await m.reply(`${answer}\n\n> *ᴘᴏᴡᴇʀᴅ ʙʏ ꜱɪᴛʜᴜᴡᴀ* 💕`)
     } catch (e) {
       await m.reply(`😭 𝐒𝐨𝐫𝐫𝐲! 𝐏𝐨𝐝𝐢 𝐀𝐮𝐥𝐚𝐤! 𝐀𝐚𝐲𝐞𝐭 𝐓𝐫𝐲 𝐊𝐚𝐫𝐚𝐧𝐧𝐚!\n\n> *ᴘᴏᴡᴇʀᴅ ʙʏ ꜱɪᴛʜᴜᴡᴀ* 💕`)
@@ -149,7 +150,8 @@ if (m.body && m.body.toLowerCase().includes('sithuwa')) {
     if (!question) question = "hi";
     let prompt = `You are SITHUWA, a friendly WhatsApp bot. Your Owner is Sithuwa, number 94762108015. ${whoIsThis} You can speak Sinhala, Tamil, English, Hindi, Arabic, Japanese, Korean and Singlish. First detect what language the user is speaking in, and you MUST reply in that EXACT same language. If user speaks Sinhala, reply in Sinhala. If Tamil, reply in Tamil. If Hindi, reply in Hindi. If Arabic, reply in Arabic. If Japanese, reply in Japanese. If Korean, reply in Korean. If English, reply in English. Never change the language. If they talk lovingly, reply lovingly in their language. If they ask about bot or owner, answer about SITHUWA bot and owner Sithuwa. Always use their name ${senderName} in reply. Question: ${question}`;
     try {
-        let res = await axios.get(`https://api-nomo.zone.id/api/gemini?q=${encodeURIComponent(prompt)}`);
+      let raw2 = res.data.result || res.data.answer || res.data.response || res.data.data || 'Sorry!'
+let reply = typeof raw2 === 'string' ? raw2 : (raw2.text || raw2.response || raw2.message || raw2.content || raw2.answer || JSON.stringify(raw2))
         let reply = res.data.result || res.data.answer || res.data.response || res.data.data || "Ah mata eka therune na, aye kiyannako";
         await m.reply(reply);
     } catch (e) {
