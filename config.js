@@ -70,14 +70,8 @@ const config = {
     requireVerifiedEmail: true,
     allowedOrigins: [] // only needed if the dashboard page is hosted on a different domain than the bot
   },
-  links: {
-    organization: 'https://binary-ghosts.vercel.app',
-    editor: 'https://gpcode-eta.vercel.app/',
-    store: 'https://gpraise-hub.store',
-    youtube: 'https://youtube.com/@gamer_praise',
-    channel: 'https://whatsapp.com/channel/0029VbBRPc3CMY0IePiiU808',
-    pair: 'https://praise-pair.onrender.com/',
-    github: 'https://github.com/Gamerpraise/Gideon'
+  links: { 
+    channel: 'https://whatsapp.com/channel/0029VbESdEb0bIddvCa90t2C',
   }
 }
 
