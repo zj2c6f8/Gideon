@@ -19,16 +19,9 @@ function titleCase(value) {
   return String(value || '').replace(/\b\w/g, (c) => c.toUpperCase())
 }
 
-let botImage = null
 function getBotImage() {
-  if (botImage !== null) return botImage || null
-  try {
-    botImage = fs.readFileSync(path.join(__dirname, '..', 'assets', 'gideon.jpg'))
-  } catch {
-    botImage = false
-  }
-  return botImage || null
-}
+    return { url: "https://res.cloudinary.com/p6lu5bpe/image/upload/v1794755001/hxvxutnifiohvlqiguac.jpg" }
+    }
 
 module.exports = {
   name: 'menu',
