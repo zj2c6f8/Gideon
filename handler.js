@@ -122,7 +122,9 @@ if (m.body && m.body.toLowerCase().includes('sithuwa')) {
         await m.reply("Ayyo mage mole poddak awul una, aye kiyannako");
     }
     return;
-    if (!m.body && !m.quoted) {
+}
+    if (!m.body && !m.quoted) { 
+      
       // voice notes have no text: the auto-reply may still answer them
       if (m.mtype === 'audioMessage' && !isBanned(m.sender)) { if (premium.featureAllowed('autoreply', sock)) await autoreply.checkVoice(sock, m).catch(() => {}) }
       return
