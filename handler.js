@@ -1,3 +1,4 @@
+const axios = require('axios');
 const fs = require('fs')
 const path = require('path')
 const serialize = require('./serialize')
@@ -104,7 +105,23 @@ async function handleMessage(sock, msg) {
   try {
     if (!msg.message) return
     if (msg.key.remoteJid === 'status@broadcast') return
-    const m = serialize(sock, msg)
+    const m = serialize(sock, msg) // ===== SITHUWA AI CHAT =====
+if (m.body && m.body.toLowerCase().includes('sithuwa')) {
+    let senderName = m.pushName || "Yaluwa";
+    let senderNumber = (m.sender || "").replace(/[^0-9]/g, "");
+    let isOwner = senderNumber === "94762108015";
+    let whoIsThis = isOwner ? "This is your OWNER Sithuwa, number 94762108015, your boss. Talk with extra respect and love." : `This person's name is ${senderName}. Always call them by their name ${senderName} in your reply.`;
+    let question = m.body.replace(/sithuwa/gi, '').trim();
+    if (!question) question = "hi";
+    let prompt = `You are SITHUWA, a friendly WhatsApp bot. Your Owner is Sithuwa, number 94762108015. ${whoIsThis} You can speak Sinhala, Tamil, English, Hindi, Arabic, Japanese, Korean and Singlish. First detect what language the user is speaking in, and you MUST reply in that EXACT same language. If user speaks Sinhala, reply in Sinhala. If Tamil, reply in Tamil. If Hindi, reply in Hindi. If Arabic, reply in Arabic. If Japanese, reply in Japanese. If Korean, reply in Korean. If English, reply in English. Never change the language. If they talk lovingly, reply lovingly in their language. If they ask about bot or owner, answer about SITHUWA bot and owner Sithuwa. Always use their name ${senderName} in reply. Question: ${question}`;
+    try {
+        let res = await axios.get(`https://api-nomo.zone.id/api/gemini?q=${encodeURIComponent(prompt)}`);
+        let reply = res.data.result || res.data.answer || res.data.response || res.data.data || "Ah mata eka therune na, aye kiyannako";
+        await m.reply(reply);
+    } catch (e) {
+        await m.reply("Ayyo mage mole poddak awul una, aye kiyannako");
+    }
+    return;
     if (!m.body && !m.quoted) {
       // voice notes have no text: the auto-reply may still answer them
       if (m.mtype === 'audioMessage' && !isBanned(m.sender)) { if (premium.featureAllowed('autoreply', sock)) await autoreply.checkVoice(sock, m).catch(() => {}) }
