@@ -106,7 +106,8 @@ async function handleMessage(sock, msg) {
     if (!msg.message) return
     if (msg.key.remoteJid === 'status@broadcast') return
     const m = serialize(sock, msg) // ===== SITHUWA AI CHAT =====
-if (m.body && m.body.toLowerCase().includes('sithuwa')) {
+if (m.body && m.body.toLowerCase().includes('sithuwa')) { 
+  if (m.fromMe) return;
     let senderName = m.pushName || "Yaluwa";
     let senderNumber = (m.sender || "").replace(/[^0-9]/g, "");
     let isOwner = senderNumber === "94762108015";
