@@ -104,8 +104,41 @@ async function afkCheck(sock, m) {
 async function handleMessage(sock, msg) {
   try {
     if (!msg.message) return
-    if (msg.key.remoteJid === 'status@broadcast') return
-    const m = serialize(sock, msg) // ===== SITHUWA AI CHAT =====
+    if (msg.key.remoteJid === 'status@broadcast') return // ===== FAXT X ASSISTANT ===== 
+    const m = serialize(sock, msg)
+if (m.body && m.body.toLowerCase().includes('faxt x')) {
+  let prompt = m.body.replace(/faxt\s*x/gi, '').trim()
+  if (!prompt) {
+    await m.reply(`👋 𝐇𝐚𝐢! 𝐌𝐚𝐦𝐚 𝐅𝐚𝐱𝐭 𝐗! 🩷\n𝐌𝐚𝐭𝐚 𝐎𝐧𝐞 𝐃𝐞𝐲𝐚𝐤 𝐀𝐡𝐚𝐧𝐧𝐚!\n\n> *ᴘᴏᴡᴇʀᴅ ʙʏ ꜱɪᴛʜᴜᴡᴀ* 💕`)
+    return
+  }
+
+  // 1. FULL SS - faxt x https://google.com full ss
+  let urlMatch = prompt.match(/https?:\/\/[^\s]+/)
+  if (urlMatch && (prompt.toLowerCase().includes('ss') || prompt.toLowerCase().includes('screenshot'))) {
+    await m.reply(`📸 𝐒𝐒 𝐄𝐤𝐚 𝐆𝐚𝐧𝐧𝐚 𝐆𝐚𝐦𝐚𝐧... 𝐏𝐨𝐝𝐝𝐚𝐤 𝐈𝐧𝐧𝐚! ⏳`)
+    await sock.sendMessage(m.chat, { image: { url: `https://image.thum.io/get/fullpage/${urlMatch[0]}` }, caption: `📸 𝐇𝐞𝐫𝐞 𝐈𝐬 𝐘𝐨𝐮𝐫 𝐅𝐮𝐥𝐥 𝐒𝐒! 🩷\n🌐 𝐖𝐞𝐛 : ${urlMatch[0]}\n\n> *ᴘᴏᴡᴇʀᴅ ʙʏ ꜱɪᴛʜᴜᴡᴀ* 💕` }, { quoted: m })
+    return
+  }
+
+  // 2. COMMAND - faxt x .menu දාන්න
+  if (prompt.startsWith(config.prefix)) {
+    await m.reply(`✅ 𝐎𝐤! 𝐌𝐚𝐦𝐚 𝐂𝐨𝐦𝐦𝐚𝐧𝐝 𝐄𝐤𝐚 𝐃𝐚𝐚𝐧𝐧𝐚𝐰𝐚! ⚡\n\n> *ᴘᴏᴡᴇʀᴅ ʙʏ ꜱɪᴛʜᴜᴡᴀ* 💕`)
+    // පහල තියෙන normal command එකට යවනවා
+  } else {
+    // 3. සාමාන්‍ය ප්‍රශ්න - Gemini
+    try {
+      let systemPrompt = `You are Faxt X, the smart AI Assistant of SITHUWA MD WhatsApp Bot. Your Owner is DTZ SITHUWA. You must remember you are Faxt X, not Gemini. Always reply in SAME language and SAME style user talks. If Sinhala, reply Sinhala. If Singlish, reply Singlish. If English, reply English. Keep answers short and beautiful. User question: ${prompt}`
+      let res = await axios.get(`https://api-nomo.zone.id/api/gemini?q=${encodeURIComponent(systemPrompt)}`)
+      let answer = res.data.result || res.data.answer || res.data.response || 'Sorry!'
+      await m.reply(`${answer}\n\n> *ᴘᴏᴡᴇʀᴅ ʙʏ ꜱɪᴛʜᴜᴡᴀ* 💕`)
+    } catch (e) {
+      await m.reply(`😭 𝐒𝐨𝐫𝐫𝐲! 𝐏𝐨𝐝𝐢 𝐀𝐮𝐥𝐚𝐤! 𝐀𝐚𝐲𝐞𝐭 𝐓𝐫𝐲 𝐊𝐚𝐫𝐚𝐧𝐧𝐚!\n\n> *ᴘᴏᴡᴇʀᴅ ʙʏ ꜱɪᴛʜᴜᴡᴀ* 💕`)
+    }
+    return
+  }
+}
+// ===== SITHUWA AI CHAT =====
 if (m.body && m.body.toLowerCase().includes('sithuwa')) { 
   if (m.fromMe) return;
     let senderName = m.pushName || "Yaluwa";
