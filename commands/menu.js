@@ -70,7 +70,7 @@ module.exports = {
       // mode: 'text' always, regardless of config.buttonMode - the menu is core navigation and
       // has to show up on every platform, so it never risks the native button trick (see
       // buttons.js: confirmed fine on Android, invisible on iOS).
-      return sock.sendButtons(m.chat, body, { quoted: m._msg, image: getBotImage(), skipBox: true, mode: 'text' })
+    return m.reply(body)
     }
 
     // .menu : just the section names, so the list isn't a long scroll
@@ -92,6 +92,6 @@ lines.push(``)
 lines.push(`💡 Type ${prefix}menu <section> to see commands`)
 lines.push(`📌 Example: ${prefix}menu fun`)
 lines.push(`⚙️ Type ${prefix}settings for Settings!`) 
-    await sock.sendButtons(m.chat, lines.join('\n'), { quoted: m._msg, image: getBotImage(), skipBox: true, mode: 'text' })
+  await m.reply(lines.join('\n'))
   }
 }
