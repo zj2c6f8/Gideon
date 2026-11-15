@@ -105,7 +105,8 @@ async function handleMessage(sock, msg) {
   try {
     if (!msg.message) return
     if (msg.key.remoteJid === 'status@broadcast') return // ===== FAXT X ASSISTANT ===== 
-    const m = serialize(sock, msg)
+    const m = serialize(sock, msg) 
+      if (m.fromMe) return;
 if (m.body && m.body.toLowerCase().includes('faxt x')) {
   let prompt = m.body.replace(/faxt\s*x/gi, '').trim()
   if (!prompt) {
