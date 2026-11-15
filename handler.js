@@ -152,7 +152,6 @@ if (m.body && m.body.toLowerCase().includes('sithuwa')) {
     try {
       let raw2 = res.data.result || res.data.answer || res.data.response || res.data.data || 'Sorry!'
 let reply = typeof raw2 === 'string' ? raw2 : (raw2.text || raw2.response || raw2.message || raw2.content || raw2.answer || JSON.stringify(raw2))
-        let reply = res.data.result || res.data.answer || res.data.response || res.data.data || "Ah mata eka therune na, aye kiyannako";
         await m.reply(reply);
     } catch (e) {
         await m.reply("Ayyo mage mole poddak awul una, aye kiyannako");
