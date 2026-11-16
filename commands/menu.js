@@ -54,7 +54,6 @@ module.exports = {
   '🤖 𝐕𝐞𝐫𝐬𝐢𝐨𝐧 : 𝐒𝐈𝐓𝐇𝐔𝐖𝐀 𝐕𝟏 🎀',
   '✨ 𝐌𝐚𝐝𝐞 𝐖𝐢𝐭𝐡 : 💖 𝐁𝐲 𝐃𝐓𝐙 𝐒𝐈𝐓𝐇𝐔𝐖𝐀'
 ]
-    ]
     const order = ['general', 'owner', 'group', 'download', 'convert', 'media', 'tools', 'fun', 'global economy', 'local economy', 'ai', 'developer', 'search', 'other']
     const cats = [...new Set([...order, ...Object.keys(grouped)])].filter((cat) => grouped[cat]?.length)
     const query = (args[0] || '').toLowerCase()
