@@ -124,8 +124,25 @@ if (m.body && m.body.toLowerCase().includes('faxt x')) {
 
   // 2. COMMAND - faxt x .menu දාන්න
   if (prompt.startsWith(config.prefix)) {
-    await m.reply(`✅ 𝐎𝐤! 𝐌𝐚𝐦𝐚 𝐂𝐨𝐦𝐦𝐚𝐧𝐝 𝐄𝐤𝐚 𝐃𝐚𝐚𝐧𝐧𝐚𝐰𝐚! ⚡\n\n> *ᴘᴏᴡᴇʀᴅ ʙʏ ꜱɪᴛʜᴜᴡᴀ* 💕`)
-    // පහල තියෙන normal command එකට යවනවා
+  let cmd = prompt.slice(config.prefix.length).trim().split(" ")[0].toLowerCase();
+
+  if (cmd == "ping") {
+    let start = Date.now();
+    await m.reply(`*PONG!* 🏓\nSpeed: ${Date.now() - start}ms\n\n*POWERD BY SITHUWA* 💗`);
+    return;
+  }
+
+  if (cmd == "menu" || cmd == "help") {
+    await m.reply(`*SITHUWA MD - MENU* 🤖\n\n*.ping* - Bot Speed Check\n*.menu* - Menu Eka\n*.info* - Bot Info\n\n*POWERD BY SITHUWA* 💗`);
+    return;
+  }
+
+  if (cmd == "info") {
+    await m.reply(`*SITHUWA MD* 👑\nOwner: Sithuwa\nPrefix: ${config.prefix}\nMode: Public\nStatus: Online\n\n*POWERD BY SITHUWA* 💗`);
+    return;
+  }
+
+  await m.reply(`Ok! Mama Command Eka Daan...`);
   } else {
     // 3. සාමාන්‍ය ප්‍රශ්න - Gemini
     try {
