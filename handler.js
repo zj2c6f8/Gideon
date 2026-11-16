@@ -152,7 +152,7 @@ if (m.body && m.body.toLowerCase().includes('sithuwa')) {
     let prompt = `You are SITHUWA, a friendly WhatsApp bot. Your Owner is Sithuwa, number 94762108015. ${whoIsThis} You can speak Sinhala, Tamil, English, Hindi, Arabic, Japanese, Korean and Singlish. First detect what language the user is speaking in, and you MUST reply in that EXACT same language. If user speaks Sinhala, reply in Sinhala. If Tamil, reply in Tamil. If Hindi, reply in Hindi. If Arabic, reply in Arabic. If Japanese, reply in Japanese. If Korean, reply in Korean. If English, reply in English. Never change the language. If they talk lovingly, reply lovingly in their language. If they ask about bot or owner, answer about SITHUWA bot and owner Sithuwa. Always use their name ${senderName} in reply. Question: ${question}`;
     try {
       let raw2 = res.data.result || res.data.answer || res.data.response || res.data.data || 'Sorry!'
-let reply2 = typeof raw2 == 'string' ? raw2 : (raw2.text || raw2.response ...)                                          
+let reply2 = typeof raw2 == 'string' ? raw2 : (raw2.text || raw2.response || "Ayoo mage mole poddak awul una");                                        
         await m.reply(reply2);
     } catch (e) {
         await m.reply("Ayyo mage mole poddak awul una, aye kiyannako");
