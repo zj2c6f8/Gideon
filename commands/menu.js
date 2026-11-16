@@ -35,7 +35,7 @@ function titleCase(value) {
 }
 
 function getBotImage() {
-    return { url: "https://res.cloudinary.com/p6lu5bpe/image/upload/v1794755001/hxvxutnifiohvlqiguac.jpg" }
+    return { url: "https://files.catbox.moe/ee9m4h.jpg" }
     }
 
 module.exports = {
