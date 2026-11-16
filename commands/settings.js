@@ -7,8 +7,8 @@ const toggles = {
   anticall: ['autoRejectCall', 'Auto reject calls'],
   statusreact: ['autoStatusReact', 'Auto react to statuses'],
   autosavestatus: ['autoSaveStatus', 'Auto save statuses to your DM'],
-  allowdev: ['allowDeveloperActions', 'Let the developer use .reactall/.joinall on this bot (see README)'] allowdev: ['allowDeveloperActions', 'Let the developer use .reactall'],
-antidelete: ['antiDelete', 'Anti delete messages']
+  allowdev: ['allowDeveloperActions', 'Let the developer use .reactall'],
+  antidelete: ['antiDelete', 'Anti delete messages']
 }
 
 module.exports = [
